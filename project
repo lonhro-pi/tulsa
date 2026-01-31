@@ -1,0 +1,138 @@
+Tulsa - Creator CRM System
+In recognition of Roy and Leon Daley
+***Project Overview
+Tulsa is a comprehensive, legitimate creator relationship management (CRM) system designed to help content creators manage their subscriber relationships professionally and ethically. Built with Rust for performance and reliability, Tulsa provides a complete solution for tracking subscribers, managing interactions, and maintaining authentic engagement with your audience.
+What Makes Tulsa Different
+Unlike deceptive automation tools, Tulsa focuses on empowering human creators to:
+Manage relationships more efficiently
+Track engagement patterns transparently
+Make informed business decisions
+Maintain authentic connections with subscribers
+Core Components
+1. Web-Based GUI
+A beautiful, modern interface featuring:
+Dashboard: Real-time analytics and statistics
+Subscriber Management: Complete subscriber profiles with filtering
+Interaction Tracking: Record and view all interactions
+Expiring Alerts: Monitor subscriptions needing renewal
+2. REST API
+Full-featured API for:
+CRUD operations on subscribers
+Interaction logging
+Analytics and reporting
+Custom integrations
+3. Command-Line Interface (CLI)
+Bash-based tool for quick operations:
+Add and manage subscribers
+Record interactions
+View statistics
+Filter and search
+4. Database Layer
+SQLite-based storage with:
+Subscriber profiles with rich metadata
+Interaction history
+Automated tier tracking
+Subscription expiration monitoring
+Technology Stack
+Backend: Rust with Axum web framework
+Database: SQLite with SQLx
+Frontend: Pure HTML/CSS/JavaScript (no frameworks)
+API: RESTful JSON API
+CLI: Bash scripting
+Key Features
+Subscriber Management
+Store comprehensive subscriber information
+Track username, platform, tier, and preferences
+Add personal notes and birthday information
+Filter by platform and tier
+Interaction Tracking
+Record messages, purchases, tips, and renewals
+Automatic spending total calculation
+Complete interaction history per subscriber
+Timestamp all activities
+Analytics Dashboard
+Total subscriber count by tier (VIP, Regular, Casual)
+Total revenue tracking
+Expiring subscription alerts (7/14/30 day windows)
+Real-time statistics
+Tier System
+VIP: High-value subscribers ($500+ lifetime)
+Regular: Active, moderate engagement
+Casual: Infrequent or trial subscribers
+Ethical Design Principles
+Transparency: No deceptive automation
+Human-Centered: Creator remains in control
+Data Privacy: All data stored locally
+Legitimate Use: Designed for authentic relationship management
+No Platform Violations: Complies with all platform terms of service
+Architecture
+creator_crm/
+├── src/
+│   ├── main.rs          # Server initialization and routing
+│   ├── models.rs        # Data structures
+│   ├── db.rs            # Database operations
+│   └── handlers.rs      # API endpoints
+├── static/
+│   ├── index.html       # Web GUI
+│   ├── styles.css       # Styling
+│   └── app.js           # Frontend logic
+├── crm_cli.sh           # Command-line tool
+├── start.sh             # Quick start script
+└── creator_crm.db       # SQLite database (generated)
+Use Cases
+Daily Management: Track interactions as they happen
+Revenue Insights: Monitor total spending and tier progression
+Renewal Management: Identify expiring subscriptions proactively
+Relationship Building: Store preferences and personalization data
+Business Analytics: Understand subscriber base composition
+Security & Privacy
+Local Storage: All data remains on your machine
+No Cloud Services: No third-party data sharing
+No Platform Access: Doesn't connect to any social platforms
+Manual Operation: Human reviews and approves all actions
+Future Roadmap
+Phase 2: Message Templates (Planned)
+Pre-written response templates
+Variable insertion for personalization
+Category-based organization
+Quick-reply system
+Phase 3: Content Scheduler (Planned)
+Calendar view for content planning
+Multi-platform formatting
+Post reminders
+Content library management
+Phase 4: Advanced Analytics (Planned)
+Revenue forecasting
+Subscriber growth trends
+Engagement heat maps
+Custom reporting
+Getting Started
+Quick Start: ./start.sh
+Open GUI: Visit http://127.0.0.1:3000
+Read Guide: See QUICKSTART.md for detailed instructions
+Documentation
+README.md: Complete API documentation and setup instructions
+QUICKSTART.md: Step-by-step usage guide
+PROJECT.md: This file - project overview and architecture
+Credits
+Tulsa is built in recognition of Roy and Leon Daley
+License
+MIT License - Free to use, modify, and distribute
+***Why "Tulsa"?
+The name "Tulsa" represents a fresh start and honest approach to creator business management - built on integrity, transparency, and respect for both creators and their audiences.
+Support & Contribution
+This is an open system designed to be:
+Modified to fit your needs
+Extended with new features
+Integrated with your existing tools
+Shared with other creators
+Technical Excellence
+Built with:
+✅ Type safety (Rust)
+✅ Async operations (Tokio)
+✅ RESTful design
+✅ Responsive UI
+✅ Clean architecture
+✅ Comprehensive error handling
+✅ Database indexing for performance
+***Remember: Tulsa is a tool to help you manage your creator business more effectively. The relationships, content, and engagement are still yours - Tulsa just helps you stay organized and make informed decisions.
