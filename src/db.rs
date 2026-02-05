@@ -1,6 +1,6 @@
 use crate::models::*;
 use chrono::Utc;
-use sqlx::{sqlite::SqlitePool, Row};
+use sqlx::sqlite::SqlitePool;
 use uuid::Uuid;
 
 pub async fn init_db(database_url: &str) -> Result<SqlitePool, sqlx::Error> {
@@ -128,83 +128,103 @@ pub async fn update_subscriber(
 ) -> Result<Subscriber, sqlx::Error> {
     let now = Utc::now();
 
-    // Build dynamic update query
-    let mut updates = Vec::new();
-    let mut bindings: Vec<Box<dyn sqlx::Encode<'_, sqlx::Sqlite> + Send>> = Vec::new();
-
+    // Update each field individually if present
     if let Some(name) = payload.name {
-        updates.push("name = ?");
-        bindings.push(Box::new(name));
+        sqlx::query("UPDATE subscribers SET name = ?, updated_at = ? WHERE id = ?")
+            .bind(name)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(username) = payload.username {
-        updates.push("username = ?");
-        bindings.push(Box::new(username));
+        sqlx::query("UPDATE subscribers SET username = ?, updated_at = ? WHERE id = ?")
+            .bind(username)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(platform) = payload.platform {
-        updates.push("platform = ?");
-        bindings.push(Box::new(platform));
+        sqlx::query("UPDATE subscribers SET platform = ?, updated_at = ? WHERE id = ?")
+            .bind(platform)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(tier) = payload.tier {
-        updates.push("tier = ?");
-        bindings.push(Box::new(tier));
+        sqlx::query("UPDATE subscribers SET tier = ?, updated_at = ? WHERE id = ?")
+            .bind(tier)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(total_spent) = payload.total_spent {
-        updates.push("total_spent = ?");
-        bindings.push(Box::new(total_spent));
+        sqlx::query("UPDATE subscribers SET total_spent = ?, updated_at = ? WHERE id = ?")
+            .bind(total_spent)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(last_purchase_date) = payload.last_purchase_date {
-        updates.push("last_purchase_date = ?");
-        bindings.push(Box::new(last_purchase_date));
+        sqlx::query("UPDATE subscribers SET last_purchase_date = ?, updated_at = ? WHERE id = ?")
+            .bind(last_purchase_date)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(subscription_end_date) = payload.subscription_end_date {
-        updates.push("subscription_end_date = ?");
-        bindings.push(Box::new(subscription_end_date));
+        sqlx::query("UPDATE subscribers SET subscription_end_date = ?, updated_at = ? WHERE id = ?")
+            .bind(subscription_end_date)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(last_interaction_date) = payload.last_interaction_date {
-        updates.push("last_interaction_date = ?");
-        bindings.push(Box::new(last_interaction_date));
+        sqlx::query("UPDATE subscribers SET last_interaction_date = ?, updated_at = ? WHERE id = ?")
+            .bind(last_interaction_date)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(preferences) = payload.preferences {
-        updates.push("preferences = ?");
-        bindings.push(Box::new(preferences));
+        sqlx::query("UPDATE subscribers SET preferences = ?, updated_at = ? WHERE id = ?")
+            .bind(preferences)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(notes) = payload.notes {
-        updates.push("notes = ?");
-        bindings.push(Box::new(notes));
+        sqlx::query("UPDATE subscribers SET notes = ?, updated_at = ? WHERE id = ?")
+            .bind(notes)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(birthday) = payload.birthday {
-        updates.push("birthday = ?");
-        bindings.push(Box::new(birthday));
+        sqlx::query("UPDATE subscribers SET birthday = ?, updated_at = ? WHERE id = ?")
+            .bind(birthday)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
     if let Some(favorite_content_types) = payload.favorite_content_types {
-        updates.push("favorite_content_types = ?");
-        bindings.push(Box::new(favorite_content_types));
+        sqlx::query("UPDATE subscribers SET favorite_content_types = ?, updated_at = ? WHERE id = ?")
+            .bind(favorite_content_types)
+            .bind(now)
+            .bind(id)
+            .execute(pool)
+            .await?;
     }
-
-    updates.push("updated_at = ?");
-
-    if updates.len() == 1 {
-        // Only updated_at would be changed, so just return existing subscriber
-        return get_subscriber(pool, id).await;
-    }
-
-    let query = format!("UPDATE subscribers SET {} WHERE id = ?", updates.join(", "));
-
-    let mut query_builder = sqlx::query(&query);
-    for binding in bindings {
-        // Note: This is a simplified approach. In production, you'd handle this more carefully
-        // For now, we'll use a simpler approach with explicit fields
-    }
-
-    // Simpler approach: just update fields that are present
-    sqlx::query(&format!(
-        "UPDATE subscribers SET {} WHERE id = ?",
-        updates.join(", ")
-    ))
-    .bind(now)
-    .bind(id)
-    .execute(pool)
-    .await?;
 
     get_subscriber(pool, id).await
 }
