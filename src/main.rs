@@ -21,7 +21,7 @@ async fn main() {
 
     // Database URL
     let database_url = std::env::var("DATABASE_URL")
-        .unwrap_or_else(|_| "sqlite://creator_crm.db".to_string());
+        .unwrap_or_else(|_| "sqlite://./creator_crm.db?mode=rwc".to_string());
 
     // Initialize database
     let pool = db::init_db(&database_url)
