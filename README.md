@@ -1,20 +1,16 @@
 iLonhro Terminal
 ================
 
-iLonhro Terminal is a Linux terminal emulator inspired by the visual
-language of iPhone and iCloud. This repository is a fresh scaffold for
-building the UI and the terminal engine.
+iLonhro Terminal is a Linux TUI terminal emulator inspired by the visual
+language of iPhone and iCloud. Branding: **iLonhro by Lonhro**.
+
+Theme
+-----
+Default theme: **Pink_n_Black** (cyberpunk).
 
 Status
 ------
-Early scaffold. The current binary is a minimal interactive loop while
-the emulator design and feature set are being defined.
-
-Goals
------
-- iPhone/iCloud style terminal UI for Linux.
-- PTY-backed shell execution with reliable input/output handling.
-- Theme and layout system for quick customization.
+TUI prototype with a PTY-backed bash session and a themed interface.
 
 Getting Started
 ---------------
@@ -22,13 +18,25 @@ Getting Started
 2. Build and run:
    cargo run
 
+Controls
+--------
+- Ctrl+Q: Quit iLonhro Terminal
+- Ctrl+C: Send SIGINT to the shell
+
+Shell
+-----
+By default the app launches **bash**. Override via:
+```
+export ILONHRO_SHELL=/bin/bash
+```
+
 Roadmap (Draft)
 ---------------
-- Define the target UI stack (TUI, desktop, or web-based shell).
-- Implement PTY session management and shell spawning.
-- Add theming, tabs, and basic settings.
+- Improve interactive editing (cursor movement, history).
+- Add tabs and split panes.
+- Expand theming and settings.
 
 Notes
 -----
-If you have specific UI expectations, target Linux distro, or shell
-preferences, share them so the roadmap can be refined.
+If you want specific UI layout, keybindings, or distro targeting, share
+the details so the roadmap can be refined.
