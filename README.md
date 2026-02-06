@@ -10,31 +10,39 @@ Default theme: **Pink_n_Black** (cyberpunk).
 
 Status
 ------
-TUI prototype with a PTY-backed bash session and a themed interface.
+- Local TUI bash terminal.
+- Remote WebSocket server for iOS clients.
 
-Getting Started
----------------
+Getting Started (TUI)
+---------------------
 1. Install Rust (https://rustup.rs).
 2. Build and run:
-   cargo run
+   cargo run --bin ilonhro_terminal
 
 Controls
 --------
 - Ctrl+Q: Quit iLonhro Terminal
 - Ctrl+C: Send SIGINT to the shell
 
-Shell
------
-By default the app launches **bash**. Override via:
+Server Mode (iOS Backend)
+-------------------------
+Run the WebSocket PTY server:
 ```
+export ILONHRO_BIND=0.0.0.0:7070
+export ILONHRO_TOKEN=change_me
 export ILONHRO_SHELL=/bin/bash
+cargo run --bin ilonhro_server
 ```
 
-Roadmap (Draft)
----------------
-- Improve interactive editing (cursor movement, history).
-- Add tabs and split panes.
-- Expand theming and settings.
+Clients connect to:
+```
+ws://HOST:7070/ws
+```
+Use `Authorization: Bearer <token>` if `ILONHRO_TOKEN` is set.
+
+iOS Client
+----------
+See `ios/README.md` for the SwiftUI client scaffold and setup steps.
 
 Notes
 -----

@@ -6,3 +6,9 @@
 *.sqlite3
 *.log
 .env
+.DS_Store
+ios/DerivedData
+ios/.build
+ios/.swiftpm
+*.xcuserdata
+*.xcuserstate
