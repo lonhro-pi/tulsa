@@ -1,0 +1,16 @@
+[package]
+name = "ilonhro_terminal"
+version = "0.1.0"
+edition = "2021"
+authors = ["In recognition of Roy and Leon Daley"]
+description = "iLonhro Terminal - iPhone/iCloud style Linux terminal emulator"
+
+[[bin]]
+name = "ilonhro_terminal"
+path = "main.rs"
+
+[dependencies]
+anyhow = "1.0.101"
+crossterm = "0.29.0"
+portable-pty = "0.9.0"
+ratatui = "0.29.0"
